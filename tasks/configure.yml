@@ -63,7 +63,7 @@
   template:
     src: userlist.cfg
     dest: "{{ etc_prefix }}/haproxy/userlists.d/{{ item.name }}.cfg"
-  with_items: "{{ haproxy_userlists }}"
+  with_items: "{{ haproxy_userlists | default([]) }}"
   when: haproxy_userlists is defined
 
 ## ASSEMBLE CONFIG - GLOBAL & DEFAULT
