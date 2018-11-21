@@ -129,6 +129,14 @@ empty: true
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
 #    rspirep:
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    reqdel:
+#      - "^X-Forwarded-For:.*"
+#    reqidel:
+#      - "^X-Forwarded-For:.*"
+#    rspdel:
+#      - "^Server:.*"
+#    rspidel:
+#      - "^Server:.*"
 #    force_persist:
 #      - if hdr(Host) serverX
 #    use_server:
@@ -181,6 +189,14 @@ empty: true
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
 #    rspirep:
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    reqdel:
+#      - "^X-Forwarded-For:.*"
+#    reqidel:
+#      - "^X-Forwarded-For:.*"
+#    rspdel:
+#      - "^Server:.*"
+#    rspidel:
+#      - "^Server:.*"
 #    force_persist:
 #
 #haproxy_listen:
@@ -228,6 +244,14 @@ empty: true
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
 #    rspirep:
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    reqdel:
+#      - "^X-Forwarded-For:.*"
+#    reqidel:
+#      - "^X-Forwarded-For:.*"
+#    rspdel:
+#      - "^Server:.*"
+#    rspidel:
+#      - "^Server:.*"
 #    appsession: 'JSESSIONID len 52 timeout 3h'
 #    stats:
 #      enabled:
