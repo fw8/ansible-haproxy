@@ -21,8 +21,9 @@ empty: true
 #      level:
 #      minlevel:
 #      format:
-#  ssl_default_bind_options: no-sslv3 no-tls-tickets
-#  ssl_default_bind_ciphers: EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4
+#  log_send_hostname:
+#  ssl_default_bind_options:
+#  ssl_default_bind_ciphers:
 #  tune:
 #    chksize: 32768
 #    ssl:
@@ -129,6 +130,9 @@ empty: true
 #    rspirep:
 #      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
 #    force_persist:
+#      - if hdr(Host) serverX
+#    use_server:
+#      - server if hdr(Host) serverX
 #
 #haproxy_backends:
 #  - name:
