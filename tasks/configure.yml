@@ -53,7 +53,7 @@
   template:
     src: "frontend.cfg"
     dest: "{{ haproxy_config_dir }}/frontends.d/{{ item.name }}.cfg"
-  with_items: "{{ haproxy_frontends | default([]) }}"
+  with_items: "{{ haproxy_frontends }}"
   when: haproxy_frontends is defined
 
 ## ASSEMBLE CONFIG - BACKEND
@@ -81,7 +81,7 @@
   template:
     src: "backend.cfg"
     dest: "{{ haproxy_config_dir }}/backends.d/{{ item.name }}.cfg"
-  with_items: "{{ haproxy_backends | default([]) }}"
+  with_items: "{{ haproxy_backends }}"
   when: haproxy_backends is defined
 
 ## ASSEMBLE CONFIG - LISTEN
@@ -135,7 +135,7 @@
   template:
     src: userlist.cfg
     dest: "{{ haproxy_config_dir }}/userlists.d/{{ item.name }}.cfg"
-  with_items: "{{ haproxy_userlists | default([]) }}"
+  with_items: "{{ haproxy_userlists }}"
   when: haproxy_userlists is defined
 
 ## ASSEMBLE CONFIG - GLOBAL & DEFAULT
