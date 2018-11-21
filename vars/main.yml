@@ -1,4 +1,5 @@
 ---
+
 empty: true
 #haproxy_global:
 #  chroot:
@@ -23,18 +24,28 @@ empty: true
 #  ssl_default_bind_options: no-sslv3 no-tls-tickets
 #  ssl_default_bind_ciphers: EECDH+ECDSA+AESGCM:EECDH+aRSA+AESGCM:EECDH+ECDSA+SHA384:EECDH+ECDSA+SHA256:EECDH+aRSA+SHA384:EECDH+aRSA+SHA256:EECDH:EDH+aRSA:!aNULL:!eNULL:!LOW:!3DES:!MD5:!EXP:!PSK:!SRP:!DSS:!RC4
 #  tune:
+#    chksize: 32768
 #    ssl:
-#      default_dh_param: 2048
+#      default-dh-param: 2048
+#    zlib:
+#      memlevel: 9
 #
 #haproxy_defaults:
 #  mode:
 #  log:
+#    - address:
+#      facility:
+#      level:
+#      minlevel:
+#      format:
 #  options:
 #    - <option>
 #  retries:
 #  timeout:
 #    - param:
 #      value:
+#  balance:
+#  cookie:
 #  maxconn:
 #  stats:
 #    enabled:
@@ -52,6 +63,18 @@ empty: true
 #    expect:
 #    send_state:
 #
+#haproxy_resolvers:
+#  - name:
+#    nameservers:
+#      - name:
+#        ip:
+#        port:
+#    hold:
+#      - status:
+#        period:
+#    resolve_retries:
+#    timeout_retry:
+#
 #haproxy_frontends:
 #  - name:
 #    ip:
@@ -66,14 +89,20 @@ empty: true
 #      uri:
 #      fail:
 #        - <condition>
+#    condition:
+#      -
 #    acl:
 #      - name:
 #        condition:
-#    http-request:
+#    http_request:
 #      - action:
 #        param:
 #        condition:
-#    rate-limit-sessions:
+#    http_response:
+#      - action:
+#        param:
+#        condition:
+#    rate_limit_sessions:
 #    block:
 #        -
 #    options:
@@ -85,19 +114,35 @@ empty: true
 #    timeout:
 #      - param:
 #        value:
+#    reqadd:
+#      - "X-RequestHeader1:\\ some-value"
+#      - "X-RequestHeader2:\\ some-value"
+#    rspadd:
+#      - "X-ResponseHeader1:\\ some-value"
+#      - "X-ResponseHeader2:\\ some-value"
+#    reqrep:
+#      - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
+#    reqirep:
+#      - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
+#    rsprep:
+#      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    rspirep:
+#      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    force_persist:
 #
 #haproxy_backends:
 #  - name:
 #    disabled:
 #    description:
 #    balance:
+#    cookie:
 #    log:
 #    retries:
 #    contimeout:
 #    NOTE: contimeout is deprecated
 #          http://cbonte.github.io/haproxy-dconv/configuration-1.5.html#4-contimeout
-#    http-send-name-header:
-#    http-check-expect:
+#    http_send_name_header:
+#    http_check_expect:
 #        - condition
 #    acl:
 #      - name:
@@ -114,6 +159,25 @@ empty: true
 #    timeout:
 #      - param:
 #        value:
+#    appsession: 'JSESSIONID len 52 timeout 3h'
+#    errorfile:
+#      - code:
+#        file:
+#    reqadd:
+#      - "X-RequestHeader1:\\ some-value"
+#      - "X-RequestHeader2:\\ some-value"
+#    rspadd:
+#      - "X-ResponseHeader1:\\ some-value"
+#      - "X-ResponseHeader2:\\ some-value"
+#    reqrep:
+#      - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
+#    reqirep:
+#      - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
+#    rsprep:
+#      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    rspirep:
+#      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    force_persist:
 #
 #haproxy_listen:
 #  - name:
@@ -123,11 +187,13 @@ empty: true
 #      ciphers: 'RC4-SHA:AES128-SHA:AES:!ADH:!aNULL:!DH:!EDH:!eNULL'
 #    disabled:
 #    description:
+#    maxconn:
 #    balance:
+#    cookie:
 #    log:
 #    retries:
-#    http-send-name-header:
-#    http-check-expect:
+#    http_send_name_header:
+#    http_check_expect:
 #        - condition
 #    acl:
 #      - name:
@@ -144,6 +210,21 @@ empty: true
 #    timeout:
 #      - param:
 #        value:
+#    reqadd:
+#      - "X-RequestHeader1:\\ some-value"
+#      - "X-RequestHeader2:\\ some-value"
+#    rspadd:
+#      - "X-ResponseHeader1:\\ some-value"
+#      - "X-ResponseHeader2:\\ some-value"
+#    reqrep:
+#      - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
+#    reqirep:
+#      - "^Host:\ www.(.*)$ Host:\ \1 if host_www"
+#    rsprep:
+#      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    rspirep:
+#      - "^Location:\ 127.0.0.1:8080 Location:\ www.mydomain.com"
+#    appsession: 'JSESSIONID len 52 timeout 3h'
 #    stats:
 #      enabled:
 #      hide_version:
@@ -151,3 +232,4 @@ empty: true
 #      realm:
 #      auth:
 #      refresh:
+#    force_persist:
